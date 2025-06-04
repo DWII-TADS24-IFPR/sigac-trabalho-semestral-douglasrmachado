@@ -71,11 +71,11 @@ class User extends Authenticatable
 
     public function isTeacher(): bool
     {
-        return $this->hasRole('professor');
+        return $this->hasRole('teacher');
     }
 
     public function isStudent(): bool
     {
-        return $this->hasRole('aluno');
+        return $this->hasRole('student');
     }
 }

@@ -26,8 +26,8 @@
                 <div class="mt-4">
                     <x-input-label for="role" :value="__('Tipo de Usuário')" class="text-gray-300" />
                     <select id="role" name="role" class="block mt-1 w-full rounded-md border-gray-600 bg-gray-700 text-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                        <option value="aluno">Aluno</option>
-                        <option value="professor">Professor</option>
+                        <option value="student">Aluno</option>
+                        <option value="teacher">Professor</option>
                     </select>
                     <x-input-error :messages="$errors->get('role')" class="mt-2" />
                 </div>

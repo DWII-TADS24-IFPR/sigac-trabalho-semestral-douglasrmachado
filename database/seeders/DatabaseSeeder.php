@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,8 +22,29 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
+        // Executar o RoleSeeder primeiro
         $this->call([
             RoleSeeder::class,
         ]);
+
+        // Obter os papéis
+        $teacherRole = Role::where('name', 'teacher')->first();
+        $studentRole = Role::where('name', 'student')->first();
+
+        // Criar um professor
+        $teacher = User::create([
+            'name' => 'Professor',
+            'email' => 'professor@example.com',
+            'password' => Hash::make('password'),
+        ]);
+        $teacher->roles()->attach($teacherRole);
+
+        // Criar um aluno
+        $student = User::create([
+            'name' => 'Aluno',
+            'email' => 'aluno@example.com',
+            'password' => Hash::make('password'),
+        ]);
+        $student->roles()->attach($studentRole);
     }
 }

@@ -6,7 +6,7 @@ use App\Models\CertificateRequest;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CertificateRequestController extends Controller
 {
@@ -21,14 +21,13 @@ class CertificateRequestController extends Controller
 
     public function create()
     {
+        if (!Auth::user()->isStudent()) {
+            abort(403, 'Apenas alunos podem solicitar certificados.');
+        }
+
+        // Get all approved documents for the student, regardless if they were used in other certificates
         $approvedDocuments = Auth::user()->documents()
             ->where('status', 'approved')
-            ->whereNotIn('id', function($query) {
-                $query->select('document_id')
-                    ->from('certificate_request_documents')
-                    ->join('certificate_requests', 'certificate_requests.id', '=', 'certificate_request_documents.certificate_request_id')
-                    ->where('certificate_requests.status', '!=', 'rejected');
-            })
             ->get();
 
         return view('certificates.create', compact('approvedDocuments'));
@@ -36,6 +35,10 @@ class CertificateRequestController extends Controller
 
     public function store(Request $request)
     {
+        if (!Auth::user()->isStudent()) {
+            abort(403, 'Apenas alunos podem solicitar certificados.');
+        }
+
         $request->validate([
             'reason' => 'required|string|max:1000',
             'documents' => 'required|array|min:1',
@@ -63,22 +66,31 @@ class CertificateRequestController extends Controller
 
     public function show(CertificateRequest $certificate)
     {
-        $this->authorize('view', $certificate);
+        // Verifica se o usuário é professor ou se é o dono da solicitação
+        if (!Auth::user()->isTeacher() && Auth::id() !== $certificate->user_id) {
+            abort(403, 'Você não tem permissão para visualizar esta solicitação.');
+        }
+
+        $certificate->load(['user', 'documents']);
         return view('certificates.show', compact('certificate'));
     }
 
     public function update(Request $request, CertificateRequest $certificate)
     {
-        $this->authorize('update', $certificate);
+        if (!Auth::user()->isTeacher()) {
+            abort(403, 'Apenas professores podem avaliar solicitações.');
+        }
 
         $request->validate([
             'status' => 'required|in:approved,rejected',
-            'feedback' => 'required|string|max:1000'
+            'feedback' => 'required|string|max:1000',
+            'validated_hours' => 'required_if:status,approved|numeric|min:0|max:200'
         ]);
 
         $certificate->update([
             'status' => $request->status,
-            'feedback' => $request->feedback
+            'feedback' => $request->feedback,
+            'validated_hours' => $request->status === 'approved' ? $request->validated_hours : null
         ]);
 
         return redirect()->route('certificates.index')
@@ -87,13 +99,16 @@ class CertificateRequestController extends Controller
 
     public function download(CertificateRequest $certificate)
     {
-        $this->authorize('download', $certificate);
+        // Verifica se o usuário é professor ou se é o dono da solicitação
+        if (!Auth::user()->isTeacher() && Auth::id() !== $certificate->user_id) {
+            abort(403, 'Você não tem permissão para baixar este certificado.');
+        }
 
         if ($certificate->status !== 'approved') {
             return back()->with('error', 'Este certificado ainda não foi aprovado.');
         }
 
-        $pdf = PDF::loadView('certificates.pdf', compact('certificate'));
+        $pdf = Pdf::loadView('certificates.pdf', compact('certificate'));
         
         return $pdf->download('certificado-horas-complementares.pdf');
     }

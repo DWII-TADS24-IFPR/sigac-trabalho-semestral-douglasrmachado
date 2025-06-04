@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role' => ['required', 'string', 'in:aluno,professor'],
+            'role' => ['required', 'string', 'in:student,teacher'],
         ]);
 
         $user = User::create([
@@ -46,7 +46,11 @@ class RegisteredUserController extends Controller
 
         // Atribui o papel ao usuário
         $role = Role::where('name', $request->role)->first();
-        $user->roles()->attach($role->id);
+        if (!$role) {
+            // Se o papel não existir, cria ele
+            $role = Role::create(['name' => $request->role]);
+        }
+        $user->roles()->attach($role);
 
         event(new Registered($user));
 

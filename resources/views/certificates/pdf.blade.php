@@ -6,85 +6,54 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            border: 2px solid #000;
-            padding: 40px;
+            margin: 40px;
+            line-height: 1.6;
         }
         .header {
             text-align: center;
             margin-bottom: 40px;
         }
-        .logo {
-            font-size: 36px;
-            font-weight: bold;
-            color: #059669;
-            margin-bottom: 20px;
-        }
-        .title {
-            font-size: 24px;
-            font-weight: bold;
+        .content {
             margin-bottom: 30px;
         }
-        .content {
-            font-size: 16px;
-            line-height: 1.6;
-            text-align: justify;
-            margin-bottom: 40px;
-        }
         .signature {
+            margin-top: 100px;
             text-align: center;
-            margin-top: 60px;
         }
-        .signature-line {
-            width: 200px;
-            border-top: 1px solid #000;
-            margin: 10px auto;
-        }
-        .documents {
-            margin-top: 40px;
-            border-top: 1px solid #ccc;
-            padding-top: 20px;
-        }
-        .document {
-            margin-bottom: 10px;
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 12px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">SIGAC</div>
-            <div class="title">Certificado de Horas Complementares</div>
-        </div>
+    <div class="header">
+        <h1>Certificado de Horas Complementares</h1>
+    </div>
 
-        <div class="content">
-            Certificamos que <strong>{{ $certificate->user->name }}</strong> completou um total de 
-            <strong>{{ $certificate->total_hours }} horas</strong> em atividades complementares, 
-            conforme documentação apresentada e aprovada pela coordenação do curso.
-        </div>
+    <div class="content">
+        <p>Certificamos que <strong>{{ $certificate->user->name }}</strong> completou um total de <strong>{{ $certificate->validated_hours }}</strong> horas de atividades complementares, conforme documentação apresentada e validada pela instituição.</p>
 
-        <div class="documents">
-            <h3>Documentos Aprovados:</h3>
+        <p>Documentos apresentados:</p>
+        <ul>
             @foreach($certificate->documents as $document)
-                <div class="document">
-                    • {{ $document->title }} - {{ $document->hours }} horas
-                </div>
+                <li>{{ $document->title }} - {{ $document->hours }} horas</li>
             @endforeach
-        </div>
+        </ul>
 
-        <div class="signature">
-            <div class="signature-line"></div>
-            <p>Coordenação do Curso</p>
-        </div>
+        <p>Motivo da solicitação:</p>
+        <p>{{ $certificate->reason }}</p>
+    </div>
 
-        <div style="text-align: center; margin-top: 40px; font-size: 14px;">
-            Certificado emitido em {{ now()->format('d/m/Y') }}
-        </div>
+    <div class="signature">
+        <p>_______________________________</p>
+        <p>Coordenador do Curso</p>
+    </div>
+
+    <div class="footer">
+        <p>Certificado emitido em {{ now()->format('d/m/Y') }}</p>
+        <p>ID da solicitação: {{ $certificate->id }}</p>
     </div>
 </body>
 </html> 

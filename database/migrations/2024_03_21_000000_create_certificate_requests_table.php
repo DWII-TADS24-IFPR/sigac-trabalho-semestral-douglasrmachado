@@ -11,10 +11,11 @@ return new class extends Migration
         Schema::create('certificate_requests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('status')->default('pending'); // pending, approved, rejected
-            $table->text('reason')->nullable(); // Razão da solicitação
-            $table->text('feedback')->nullable(); // Feedback do professor
-            $table->integer('total_hours')->default(0); // Total de horas aprovadas
+            $table->text('reason');
+            $table->decimal('total_hours', 8, 2);
+            $table->decimal('validated_hours', 8, 2)->nullable();
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->text('feedback')->nullable();
             $table->timestamps();
         });
     }
