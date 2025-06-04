@@ -1,51 +1,61 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/zuhEA6gC)
-# 📌 Entrega do Projeto – SIGAC
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-## 🗓 Prazo Final
-**Data limite:** até **27/05/2025**, às **23h59**
-🔒 Após esse horário, o Classroom será bloqueado para novos envios.
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-## 🧑‍💻 Entrega Individual
-Cada aluno deve entregar seu **próprio projeto**.
+## About Laravel
 
-📎 Link da turma no Classroom: [Acessar turma](https://classroom.github.com/a/tJl0o_ON)
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
----
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-## 📂 Sobre os Commits
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-- Serão avaliados os commits realizados **até a data limite**.
-- **Evite** commits vazios ou com mensagens ofensivas/inapropriadas.
-- Use mensagens de commit **claras** e **relacionadas ao progresso do código**.
+## Learning Laravel
 
----
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-## 👨‍🏫 Apresentação Obrigatória
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-Além da entrega no Classroom, **cada aluno deverá apresentar seu projeto individualmente**, demonstrando o funcionamento e respondendo a eventuais dúvidas.
-📅 A apresentação será agendada na **semana da entrega**.
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
----
+## Laravel Sponsors
 
-## 📝 Avaliação
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-A nota será atribuída com base nos seguintes critérios:
+### Premium Partners
 
-- ✔ **Qualidade e funcionamento** do código entregue
-- ✔ **Clareza e organização** dos commits
-- ✔ **Apresentação individual**
+- **[Vehikl](https://vehikl.com)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Redberry](https://redberry.international/laravel-development)**
+- **[Active Logic](https://activelogic.com)**
 
-### Escala de conceitos:
-- 🟢 A – Ótimo
-- 🟡 B – Bom
-- 🟠 C – Suficiente
-- 🔴 D – Insuficiente
+## Contributing
 
-📊 **Peso no bimestre:** 6 pontos
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
----
+## Code of Conduct
 
-## 🔁 Recuperação
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-Após o prazo final, o aluno ainda poderá apresentar o projeto com **caráter de recuperação**, por até **7 dias corridos**, ou seja, até a **próxima aula regular**.
-➡️ Neste período, o **conceito máximo possível** será **C**.
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
